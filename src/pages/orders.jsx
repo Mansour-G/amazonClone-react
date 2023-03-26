@@ -8,7 +8,6 @@ import Order from "../components/Order";
 
 const Orders = ({ orders }) => {
   const { data: session } = useSession();
-  console.log(orders);
 
   return (
     <div>
@@ -19,7 +18,7 @@ const Orders = ({ orders }) => {
         </h1>
 
         {session ? (
-          <h2>{orders.length} Orders</h2>
+          <h2>{orders?.length} Orders</h2>
         ) : (
           <h2>Please sign in to see your orders</h2>
         )}
@@ -67,6 +66,7 @@ export async function getServerSideProps(context) {
     // doc.data() is never undefined for query doc snapshots
     // console.log(doc.id, " => ", doc.data());
   });
+  console.log(stripeOrders);
 
   // stripe orders
   const orders = await Promise.all(

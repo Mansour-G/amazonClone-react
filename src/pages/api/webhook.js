@@ -1,15 +1,20 @@
 import { buffer } from "micro"
 import * as admin from 'firebase-admin'
 
+// app.use(cors())
+// app.use(bodyParser.json())
+// app.use(bodyParser.urlencoded({ extended: true }))
+
 // Secur conection to firebase from bakend
 const serviceAccount = require("../../../permissions.json");
 const app = !admin.apps.length ? admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
+  // databaseURL: "https://fir-90757.firebaseio.com",
 }) : admin.app();
+
 //Establish connection to stripe
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const endPointSecret = process.env.STRIPE_SIGNING_SECRET;
-
 
 
 
@@ -27,9 +32,13 @@ const fulFillOrder = async (session) => {
       images: JSON.parse(session.metadata.images),
       timestamp: admin.firestore.FieldValue.serverTimestamp(),
     })
-    .then(() => {
-      console.log(`SUCCESS: Order ${session.id} had add to the DB`);
+    .then((err) => {
+      if (true) {
+        console.log(`SUCCESS: Order ${session.id} had add to the DB`);
+      }
+      console.log(`Error => ${err}`)
     })
+
 }
 
 export default async (req, res) => {
