@@ -6,13 +6,11 @@ import * as admin from 'firebase-admin'
 const serviceAccount = require("../../../permissions.json");
 const app = !admin.apps.length ? admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  // databaseURL: "https://fir-90757.firebaseio.com",
 }) : admin.app();
 
 //Establish connection to stripe
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const endPointSecret = process.env.STRIPE_SIGNING_SECRET;
-
 
 
 const fulFillOrder = async (session) => {
