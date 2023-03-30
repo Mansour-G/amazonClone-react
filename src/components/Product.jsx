@@ -1,4 +1,5 @@
 import { StarIcon } from "@heroicons/react/solid";
+import { useSession } from "next-auth/react";
 import Image from "next/legacy/image";
 import React, { useState } from "react";
 import Currency from "react-currency-formatter";
@@ -7,6 +8,7 @@ import { addToBasket } from "../slices/basketSlice";
 
 const Product = ({ id, title, price, description, category, image }) => {
   const dispatch = useDispatch();
+  const { data: session } = useSession();
 
   const MIN_RATING = 1;
   const MAX_RATING = 5;
@@ -15,6 +17,9 @@ const Product = ({ id, title, price, description, category, image }) => {
   );
   const [hasPrime] = useState(Math.random() < 0.5);
 
+  if(!session){
+    
+  }
   const addItemToBasket = () => {
     const product = {
       id,
