@@ -16,7 +16,7 @@
     "firebase-admin": "^11.3.0",
     "micro": "^9.4.1",
     "moment": "^2.29.4",
-    "next": "latest",
+    "next": "^13.3.1",
     "next-auth": "^4.16.3",
     "react": "^18.2.0",
     "react-currency-formatter": "^1.1.0",
@@ -30,5 +30,8 @@
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.15",
     "tailwindcss": "^2.1.2"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/Mansour-G/amazonClone-react.git",
+  "author": "Mansour G <maansuur123@gmail.com>"
 }
