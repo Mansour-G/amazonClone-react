@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin'
 
 
 // Secur conection to firebase from bakend
-const serviceAccount = require("../../../permissions.json");
+const serviceAccount = require("../../permissions.json");
 const app = !admin.apps.length ? admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   // databaseURL: "https://fir-90757.firebaseio.com",
@@ -58,7 +58,7 @@ export default async (req, res) => {
     // Handle the checkout session complated Event
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
-
+      console.log('Payment succeeded');
       console.log(session)
       // Fullfill the order 
       return fulFillOrder(session).then(
